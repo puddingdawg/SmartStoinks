@@ -1,0 +1,10 @@
+# Security Keys (NEVER UPLOAD THESE)
+firebase_key.json
+secrets.toml
+.env
+
+# System Files
+venv/
+__pycache__/
+*.pyc
+.DS_Store
