@@ -3,20 +3,48 @@ from firebase_admin import credentials, firestore
 import datetime as dt
 import yfinance as yf
 import pandas as pd
+from dotenv import load_dotenv
+import os
+import json
 
-# --- CONFIGURATION ---
-# Ensure this file exists in your root folder
-CRED_PATH = "firebase_key.json"
+# # --- CONFIGURATION ---
+# # Ensure this file exists in your root folder
+# CRED_PATH = "firebase_key.json"
 
-# --- FIREBASE INIT ---
-# We use a singleton pattern to ensure we only initialize once
+# # --- FIREBASE INIT ---
+# # We use a singleton pattern to ensure we only initialize once
+# if not firebase_admin._apps:
+#     try:
+#         cred = credentials.Certificate(CRED_PATH)
+#         firebase_admin.initialize_app(cred)
+#     except Exception as e:
+#         print(f"Error initializing Firebase: {e}")
+
+# Safe way to store credentials
+
+load_dotenv()
+
+ENV_NAME = "FIREBASE_CREDS"
 if not firebase_admin._apps:
-    try:
-        cred = credentials.Certificate(CRED_PATH)
-        firebase_admin.initialize_app(cred)
-    except Exception as e:
-        print(f"Error initializing Firebase: {e}")
-
+    
+    # 1. READ THE SECURE STRING
+    # os.environ.get() now reads the value from the .env file
+    creds_json_string = os.environ.get(ENV_NAME)
+    
+    if creds_json_string:
+        try:
+            # 2. PARSE THE STRING BACK INTO A DICTIONARY
+            creds_dict = json.loads(creds_json_string)
+            
+            # 3. INITIALIZE FIREBASE 
+            cred = credentials.Certificate(creds_dict)
+            firebase_admin.initialize_app(cred)
+            
+        except json.JSONDecodeError:
+            raise ValueError(f"ERROR: {ENV_NAME} is not valid JSON. Check formatting.")
+        
+    else:
+        raise ValueError(f"ERROR: The environment variable {ENV_NAME} was not found. Cannot initialize Firebase Admin.")
 db = firestore.client()
 
 # --- PORTFOLIO FUNCTIONS ---
