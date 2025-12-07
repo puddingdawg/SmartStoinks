@@ -1,4 +1,4 @@
 # SmartStoinks - The-Intelligent-Portfolio-Assistant (Work In Progress)
 AI/ML-powered stock portfolio tracker
-# Portfolio Page
+# Home Page
 * Add Market Indicatiors ie Fear Index (VIX?), GOLD and Bitcoin
