@@ -124,7 +124,7 @@ portfolio = database.get_user_portfolio(user_id)
 tickers = list(portfolio.keys())
 
 
-# DATA FETCH, Welcome Bubble
+# DATA FETCH, Welcome Bubble, when user haven't add stocks to their portfolio
 if not tickers:
     # REPLACEMENT: Using CSS Classes from style.css
     st.markdown("""
