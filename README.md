@@ -2,7 +2,7 @@
 AI/ML-powered stock portfolio tracker, built with Python, Streamlit, and Firebase. This app allows you to track your portfolio performance, visualize returns against the S&P 500, and manage your assets with a user-friendly and minimalistic UI.
 
 ## 🚀 Features
-- **Real-time Dashboard:** Net worth tracking, "Top Performer" metrics and Market Indicators(Fear Index ie VIX, Bond Mkt, BTC, Gold).
+- **Real-time Dashboard:** Net worth tracking, "Top Performer" metrics and Market Indicators(Fear Index ie VIX: FRED API), Bond Mkt, BTC, Gold).
 - **Portfolio Management:** Add, edit, and delete assets (Stocks/ETFs).
 - **Portfolio Analysis:** Using AI to check recent news about the company and conduct a sentiment analysis, and have portfolio risk indicators ie SHARP Ratio
 - **Interactive Charts:** Compare your personal return vs. the S&P 500.
